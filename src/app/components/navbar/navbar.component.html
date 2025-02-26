@@ -1,0 +1,72 @@
+<mat-toolbar class="mat-elevation-z8 mat-menu-panel">
+
+    <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Ticket Management System</span>
+    <span class="example-spacer"></span>
+
+    <!-- <button mat-button routerLink="/"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</button>  -->
+
+    <button mat-button routerLink="/dashboard"  routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Dashboard</button>
+
+    <button mat-button routerLink="/tickets" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Tickets</button>
+
+    <button mat-button routerLink="/users" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Users</button>
+
+    <button mat-icon-button (click)="badgeVisibility()">
+        <mat-icon matBadge="16" matBadgeSize="large" [matBadgeHidden]="isBadgeVisible">notifications</mat-icon>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="setting" class="menu-button">
+        <span class="button-content">
+            <span>User</span>
+            <mat-icon>arrow_drop_down</mat-icon>
+        </span>
+    </button>
+
+    <mat-menu #setting="matMenu">
+        <button mat-menu-item routerLink="/users-details">Profile</button>
+        <button mat-menu-item routerLink="">Logout</button>
+    </mat-menu>
+
+  </mat-toolbar>
+  
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer opened="false" mode="over" position="start">
+        <mat-nav-list>
+            <!-- <mat-list-item>
+                <button mat-button> 
+                    <mat-icon>home</mat-icon> Home
+                </button>
+            </mat-list-item> -->
+
+            <mat-list-item>
+                <button mat-button routerLink="/dashboard"> 
+                    <mat-icon>dashboard</mat-icon> Dashboard
+                </button>
+            </mat-list-item>
+            
+            <mat-list-item>
+                <button mat-button routerLink="/tickets"> 
+                    <mat-icon>list_alt</mat-icon> Tickets
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="/users"> 
+                    <mat-icon>group</mat-icon> Users
+                </button>
+            </mat-list-item>  
+            <mat-list-item>
+                <button mat-button> 
+                    <mat-icon>notifications</mat-icon> Notifications
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="text-align: center; min-height: 600px;">
+            <router-outlet />
+        </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
