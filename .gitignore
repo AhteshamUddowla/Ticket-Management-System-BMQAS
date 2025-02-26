@@ -1,8 +1,8 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Editor configuration and settings
-/editorconfig
-/vscode
+/.editorconfig
+/.vscode
 
 # Compiled output
 /dist
