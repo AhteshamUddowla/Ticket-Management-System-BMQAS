@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+h1{
+    margin: 1%;
+    color: #2d67b1 !important;
+    text-align: center;
+    font-weight: bolder !important;
+}
+
+.mat-mdc-form-field{
+    width: 98%;
+    margin: 1%;
+}
+
+button{
+    margin: 2px;
+}

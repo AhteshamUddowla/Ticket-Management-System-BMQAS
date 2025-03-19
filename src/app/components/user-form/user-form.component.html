@@ -1,0 +1,41 @@
+<form [formGroup]="myForm">
+
+    <h1 mat-dialog-title>{{inputData.title}}</h1>
+    
+    <div mat-dialog-content class="dialog-content">
+
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="first_name" placeholder="Enter your first name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="last_name" placeholder="Enter your last name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="username" placeholder="Enter your username" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="email" placeholder="Enter your email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <input type="number" matInput formControlName="phone" placeholder="Enter your phone no." required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select required formControlName="role">
+            <mat-option value="">Role</mat-option>
+            @for(role of role_list; track $index){
+                <mat-option [value]="role.name">{{role.name}}</mat-option>
+              }
+          </mat-select>
+        </mat-form-field>
+    </div>
+    
+    <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">Close</button>
+        <button mat-button (click)="updateUser()">Update</button>
+    </div>
+  </form>
