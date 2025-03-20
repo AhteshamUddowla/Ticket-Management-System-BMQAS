@@ -13,7 +13,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
   loginForm: FormGroup;
   hide = signal(true);
   // errorMessage = ""
