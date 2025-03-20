@@ -1,0 +1,71 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Ahtesham",
+        "email": "ahtesham@gmail.com",
+        "phone": "01409087231",
+        "password": "12345",
+        "role": "admin"
+      },
+      {
+        "id": 2,
+        "name": "Peter",
+        "email": "peter@gmail.com",
+        "phone": "01409087232",
+        "password": "12345",
+        "role": "employee"
+      },
+      {
+        "id": 3,
+        "name": "Jack",
+        "email": "jack@gmail.com",
+        "phone": "01409087233",
+        "password": "12345",
+        "role": "guest"
+      }
+    ],
+
+    "tickets": [
+      {
+        "ticket_id": "TK-1001",
+        "date": "26/02/25",
+        "issue_category": "Customer Service",
+        "issue_types": "Refund Request",
+        "priority":"Critical",
+        "status": "Open",
+        "reporter_name": "Ahtesham",
+        "reporter_role": "guest"
+      },
+      {
+        "ticket_id": "TK-1002",
+        "date": "27/02/25",
+        "issue_category": "Finance",
+        "issue_types": "Budget Overspending",
+        "priority": "Critical",
+        "status": "In-Progress",
+        "reporter_name": "Ahtesham",
+        "reporter_role": "employee"
+      },
+      {
+        "ticket_id": "TK-1003",
+        "date": "27/02/25",
+        "issue_category": "Management",
+        "issue_types": "Project Delay",
+        "priority": "Medium",
+        "status": "Done",
+        "reporter_name": "Ahtesham",
+        "reporter_role": "guest"
+      },
+      {
+        "ticket_id": "TK-1004",
+        "date": "27/02/25",
+        "issue_category": "IT", 
+        "issue_types": "Network",
+        "priority": "High",
+        "status": "Closed",
+        "reporter_name": "Ahtesham",
+        "reporter_role": "admin"
+      }
+    ]
+  }

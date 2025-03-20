@@ -1,1 +1,215 @@
-<p>ticket-list works!</p>
+<div>
+  <button mat-flat-button (click)="addTicket()">
+    Create a New Ticket<mat-icon>add</mat-icon>
+  </button>
+
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+    <ng-container *ngIf="role === 'admin'">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Open Tickets
+          </div>
+          <div class="value">
+            {{ openTicketCount }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Closed Tickets
+          </div>
+          <div class="value">
+            {{ closedTicketCount }}
+          </div>
+        </mat-card-content>
+      </mat-card> -->
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Unassigned Tickets
+          </div>
+          <div class="value">
+            {{ unassignedTicketCount }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Due Tickets
+          </div>
+          <div class="value">
+            {{dueTicketCount}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+    <!-- Staff View -->
+    <ng-container *ngIf="role === 'employee'">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Assigned Tickets
+          </div>
+          <div class="value">
+            {{ assignedTicketCount }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Due Tickets
+          </div>
+          <div class="value">
+            {{dueTicketCount}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-container">
+    <form [formGroup]="filterForm" class="filter-form">
+      
+      <!-- Date Filter -->
+      <mat-form-field>
+        <input matInput formControlName="date" placeholder="mm/dd/yy" [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Issue Category -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="issue_category">
+          <mat-option value="">Issue Category</mat-option>
+          @for(category of issue_category_list; track $index){
+            <mat-option [value]="category.name">{{category.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Issue Type -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="issue_type">
+          <mat-option value="">Issue Type</mat-option>
+          @for(type of issue_type_list; track $index){
+            <mat-option [value]="type.name">{{type.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Priority Filter -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="priority">
+          <mat-option value="">Priority</mat-option>
+          @for(priority of priority_list; track $index){
+            <mat-option [value]="priority.name">{{priority.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Status Filter -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="status">
+          <mat-option value="">Status</mat-option>
+          @for(status of status_list; track $index){
+            <mat-option [value]="status.name">{{status.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Others Filter -->
+      <mat-form-field class="filter-field">
+        <mat-icon matPrefix class="search-icon">search</mat-icon>
+        <input matInput formControlName="others" placeholder="search by ticket id, reporter name or assignee">
+      </mat-form-field>
+
+      <button class="refresh-button" (click)="clearFilters()">
+        <mat-icon matPrefix class="rotate">refresh</mat-icon> Reset Filters
+      </button>
+    </form>    
+  </div>
+
+  <!-- Add loader in the table -->
+  <div class="table-container">
+    <table matSort mat-table [dataSource]="filteredData">
+
+      <ng-container matColumnDef="sl_no">
+        <th mat-header-cell *matHeaderCellDef>SL No.</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+    
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        @if(column==='ticket_id' || column==='date' || column==='deadline'){
+          <th [mat-sort-header]="column" mat-header-cell *matHeaderCellDef> {{ column.replace('_', ' ') | titlecase }}</th>
+        }
+        @else{
+          <th mat-header-cell *matHeaderCellDef> {{ column.replace('_', ' ') | titlecase }}</th>
+        }
+        <td mat-cell *matCellDef="let element">
+  
+          <ng-container *ngIf="column === 'priority' || column === 'status'; else defaultCell">
+            <span class="{{ element[column] }}">{{ element[column] }}</span>
+          </ng-container>
+          
+          <ng-template #defaultCell>
+            @if(column === 'reporter_name' || column === 'assigned_to'){
+              @if(element[column]!=='Unassigned'){
+                <img class="profile" src="assets/images/profile_pictures/user.jpg" alt="user">
+              }@else {
+                <img class="profile" src="assets/images/profile_pictures/unassigned.png" alt="user">
+              }
+            }
+            {{ element[column] }}
+          </ng-template>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" (click)="$event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item class="edit-icon" (click)="editTicket(element.ticket_id)">
+              <mat-icon class="edit-icon">edit_note</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item class="delete-icon" (click)="deleteTicket(element.ticket_id)">
+              <mat-icon class="delete-icon">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+  
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsWithAction"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsWithAction" routerLink="/tickets-details"></tr>
+    </table> 
+    
+    
+  </div>
+  @if(filteredData.data.length > pageSize){
+    <!-- (page)="onPageChange($event)" -->
+    <mat-paginator 
+           [length]="filteredData.data.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 20, 30, 40, 50, 100]"
+            [showFirstLastButtons]="true"
+            aria-label="Select page">
+    </mat-paginator>
+  }
+</div>

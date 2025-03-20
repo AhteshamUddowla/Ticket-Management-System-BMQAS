@@ -1,17 +1,158 @@
-.example-spacer{
+@use '@angular/material' as mat;
+
+
+/* ================= Navbar/Toolbar ====================*/
+
+.mat-toolbar {
+    background-color: #0054a6 !important;
+}
+
+.menu-button {
+    display: block;
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+}
+
+.title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.example-spacer {
     flex: 1 1 auto;
 }
 
-.mat-menu-panel {
-    background-color: #673ab7 !important; 
-    color: white !important;
+// .notification-button {
+//     order: 1; 
+//     margin-left: auto;
+// }
+
+mat-toolbar button {
+    color: #8bafe8;
+    border: none;
+    margin: 0px 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 15px;
 }
 
-.menu-button .button-content {
-    display: flex;
-    align-items: center;
+mat-toolbar button:hover {
+    color: white;
+    cursor: pointer;
 }
 
 .active-link {
-    color: white !important; 
+    color: #0e4aab !important;
+    background-color: white !important;
+    padding: 1px 15px;
+    border-radius: 20px;
+}
+
+/* ================= Sidebar ====================*/
+
+.mat-drawer {
+    width: 280px; 
+    max-width: 80%;
+    border-radius: 0px;
+}
+
+mat-drawer-content{
+    // height: auto;
+    min-height: 100vh;
+    text-align: left;
+    padding: 20px;
+    background-color: #eaecf0 ;
+}
+
+mat-list-item {
+    width: 210px;
+    margin: 10px 20px;
+    border-radius: 5px !important;
+}
+
+mat-list-item:hover {
+    background-color: #cce5ff !important;
+}
+
+.active,
+.active:hover {
+    background-color: #cce5ff !important;
+}
+
+mat-list-item button {
+    color: #004085;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
+@media (max-width: 768px) {
+    .example-spacer {
+        display: none;
+    }
+
+    mat-toolbar {
+        display: flex !important;
+    }
+
+    .title {
+        flex-grow: 1;
+        margin-left: 70px;
+    }
+
+    // .notification-button {
+    //     position: absolute;
+    //     right: 10px;
+    // }
+
+    .mat-drawer {
+        width: 250px !important;
+    }
+}
+
+
+@media (min-width: 770px) and (max-width: 960px) {
+    .menu-button {
+        display: block !important; 
+        position: absolute;
+        left: 10px;
+    }
+
+    .mat-drawer {
+        display: block !important; 
+    }
+
+    .title {
+        flex-grow: 1;
+        margin-left: 70px;
+    }
+
+    // .notification-button {
+    //     position: absolute;
+    //     right: 10px;
+    // }
+}
+
+@media (min-width: 961px) {
+    .menu-button {
+        display: none !important; 
+    }
+
+    // .notification-button {
+    //     order: 0;
+    //     margin-left: 0;
+    // }
+
+    .mat-drawer {
+        display: none !important;
+    }
 }

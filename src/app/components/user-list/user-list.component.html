@@ -1,1 +1,142 @@
-<p>user-list works!</p>
+<div>
+
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+    <ng-container>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Total Employee
+          </div>
+          <div class="value">
+            {{totalEmployees}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Available Employee
+          </div>
+          <div class="value">
+            {{availableEmployees}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">
+            Total Guest
+          </div>
+          <div class="value">
+            {{totalGuests}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-container">
+    <form [formGroup]="filterForm" class="filter-form">
+    
+      <!-- Filter -->
+      <mat-form-field class="filter-field">
+        <mat-icon matPrefix class="search-icon">search</mat-icon>
+        <input matInput formControlName="filter_all" placeholder="search by user id, username, email, phone no.">
+      </mat-form-field>
+
+      <!-- User Role -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="role">
+          <mat-option value="">Role</mat-option>
+          @for(role of role_list; track $index){
+            <mat-option [value]="role.name">{{role.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Active Status -->
+      <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
+        <mat-select formControlName="active">
+          <mat-option value="">Active</mat-option>
+          @for(active of active_list; track $index){
+            <mat-option [value]="active.name">{{active.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button class="refresh-button" (click)="clearFilters()">
+        <mat-icon matPrefix class="rotate">refresh</mat-icon> Reset Filters
+      </button>
+    </form>    
+  </div>
+
+  <!-- Add loader in the table -->
+  <div class="table-container">
+    <table matSort mat-table [dataSource]="filteredData" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="sl_no">
+        <th mat-header-cell *matHeaderCellDef>SL No.</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+    
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        @if(column==='user_id' || column==='username' || column==='email' || column==='phone'){
+          <th [mat-sort-header]="column" mat-header-cell *matHeaderCellDef> {{ column.replace('_', ' ') | titlecase }}</th>
+        }
+        @else{
+          <th mat-header-cell *matHeaderCellDef> {{ column.replace('_', ' ') | titlecase }}</th>
+        }
+        <td mat-cell *matCellDef="let element">
+          <ng-container>
+            <ng-container *ngIf="column === 'role' || column === 'active'; else defaultCell">
+              <span class="{{ element[column] }}">{{ element[column] }}</span>
+            </ng-container>
+            
+            <ng-template #defaultCell>
+              {{ element[column] }}
+            </ng-template>
+          </ng-container>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item class="edit-icon" (click)="editUser(element.user_id)">
+              <mat-icon class="edit-icon">edit_note</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item class="delete-icon" (click)="deleteUser(element.id)">
+              <mat-icon class="delete-icon">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+  
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsWithAction"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsWithAction"></tr>
+    </table> 
+    @if(filteredData.data.length > pageSize){
+      <!-- (page)="onPageChange($event)" -->
+      <mat-paginator 
+             [length]="filteredData.data.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 20, 30, 40, 50, 100]"
+              [showFirstLastButtons]="true"
+              aria-label="Select page">
+      </mat-paginator>
+    }
+    
+  </div>
+</div>

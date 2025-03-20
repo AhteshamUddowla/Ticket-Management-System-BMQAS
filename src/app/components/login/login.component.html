@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Welcome Back</mat-card-title>
+      <mat-card-subtitle>Please login to continue</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="confirmLogin()">
+        <!-- Email/Phone No. Input -->
+        <mat-form-field appearance="outline">
+          <mat-label>Email or Phone no.</mat-label>
+          <input matInput formControlName="userCredential" placeholder="Enter your email or phone no." required>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="loginForm.get('userCredential')?.hasError('required')">
+            Email or Phone no. is required.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password Input -->
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide() ? 'password' : 'text'" placeholder="●●●●●●●●●●●●●"  formControlName="password" required>
+          @if(loginForm.get('password')?.value.length > 0){
+            <button type="button"
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event)"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide()"
+            >
+              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          }
+          @if(loginForm.get('password')?.value.length == 0){
+            <mat-icon matSuffix>lock</mat-icon>
+          }
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Remember Me Checkbox -->
+        <mat-checkbox formControlName="rememberMe">Remember Me</mat-checkbox>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+
+        <!-- <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div> -->
+        
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

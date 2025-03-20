@@ -1,1 +1,84 @@
-<p>ticket-form works!</p>
+<form [formGroup]="myForm">
+
+    <h1 mat-dialog-title>{{inputData.title}}</h1>
+    
+    <div mat-dialog-content class="dialog-content">
+        <mat-form-field appearance="outline">
+          <mat-select required formControlName="issue_category">
+            <mat-option value="">Issue Category</mat-option>
+            @for(category of issue_category_list; track $index){
+              <mat-option [value]="category.name">{{category.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select required="" formControlName="issue_type">
+            <mat-option value="">Issue Type</mat-option>
+            @for(type of issue_type_list; track $index){
+              <mat-option [value]="type.name">{{type.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        
+        @if(role==='admin'){
+          <mat-form-field appearance="outline">
+            <mat-select required="" formControlName="priority">
+              <mat-option value="">Priority</mat-option>
+              @for(priority of priority_list; track $index){
+                <mat-option [value]="priority.name">{{priority.name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }
+
+        @if(role!=='guest' && inputData.action==='update'){
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="status">
+              <mat-option value="">Status</mat-option>
+              @for(status of status_list; track $index){
+                <mat-option [value]="status.name">{{status.name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }        
+
+        <mat-form-field appearance="outline">
+            <input matInput formControlName="criterias"  placeholder="Criterias" required>
+        </mat-form-field>
+
+        @if(role==='admin'){
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="reporter" placeholder="Reporter's name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="assigned_to">
+              <mat-option value="">Available Employee</mat-option>
+              <mat-option>Unassigned</mat-option>
+              <mat-option>Peter</mat-option>
+              <mat-option>Jack</mat-option>
+              <mat-option>Ahtesham</mat-option>
+              <mat-option>Finn</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="deadline" placeholder="Deadline" [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        }
+    </div>
+    
+    <div mat-dialog-actions>
+        <button mat-button (click)="closePopup()">Close</button>
+        <!-- <button mat-button [mat-dialog-close]="closeMessage">Cancel</button> -->
+         @if(inputData.action==='add'){
+           <button mat-button (click)="createTicket()">Add</button>
+         }
+         @else {
+          <button mat-button (click)="updateTicket()">Update</button>
+         }
+    </div>
+  </form>

@@ -1,1 +1,263 @@
-<p>ticket-details works!</p>
+<div>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title> Tickets Latest Status </mat-card-title>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <mat-tab-group dynamicHeight animationDuration="1000ms">
+        <!-- Ticket Details Tab -->
+        <mat-tab label="Ticket Details">
+          <div class="tab-content">
+            <div class="row">
+              <div class="title">
+                <mat-icon>event</mat-icon> Created at:
+              </div>
+              <div class="subtitle">11 Mar 3:45pm</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>schedule</mat-icon> Deadline:
+              </div>
+              <div class="subtitle">15 Mar 5:00pm</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>category</mat-icon> Issue Category:
+              </div>
+              <div class="subtitle">IT</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>warning</mat-icon> Issue Type:
+              </div>
+              <div class="subtitle">Network Issue</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>priority_high</mat-icon> Priority:
+              </div>
+              <div class="subtitle"><span class="High">High</span></div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>person</mat-icon> Reporter's Name:
+              </div>
+              <div class="subtitle">Ahtesham</div>
+            </div>
+          </div>
+        </mat-tab>
+  
+        <!-- Assignee Details Tab -->
+        <mat-tab label="Assignee Details">
+          <div class="tab-content">
+            <div class="row">
+              <div class="title">
+                <mat-icon>person</mat-icon> Name:
+              </div>
+              <div class="subtitle">Ahtesham Uddowla</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>email</mat-icon> Email:
+              </div>
+              <div class="subtitle">ahteshamgmail.com</div>
+            </div>
+            <div class="row">
+              <div class="title">
+                <mat-icon>phone</mat-icon> Phone:
+              </div>
+              <div class="subtitle">01409087231</div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-card-content>
+
+      <mat-stepper linear #stepper>
+        <!-- keep icons as numbers during edit-->
+      
+        <ng-template matStepperIcon="edit" let-index="index">
+          {{index +1}}
+        </ng-template>
+      
+        <!-- change default 'edit' icon -->
+        <!-- <ng-template matStepperIcon="edit">
+          <mat-icon>bubble_chart</mat-icon>
+        </ng-template> -->
+      
+        <!-- changed step icons -->
+        <ng-template matStepperIcon="home">
+          <mat-icon>home</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="assignment">
+          <mat-icon>assignment</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="person">
+          <mat-icon>person</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="autorenew">
+          <mat-icon>autorenew</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="check_circle">
+          <mat-icon>done</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="lock">
+          <mat-icon>lock</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="done">
+          <mat-icon>done_all</mat-icon>
+        </ng-template>
+
+        @for(step of steps; track $index){
+          @if(step.completed){
+            <mat-step [completed]="step.completed" [label]="step.label" state="done">
+            </mat-step>
+          }
+          @else {
+            <mat-step [completed]="step.completed" [label]="step.label" [state]="step.icon">
+            </mat-step>
+          }
+        }
+      
+      </mat-stepper>
+            
+      <!-- <mat-stepper #stepper linear> -->
+          <!-- <ng-template matStepperIcon="edit" let-index="index">
+              <span class="step-number">{{ index + 1 }}</span>
+          </ng-template> -->
+      
+          <!-- <ng-template matStepperIcon="done" let-index="index">
+              <span class="step-number">{{ index + 1 }}</span>
+          </ng-template> -->
+
+         
+          <!-- Step 1 -->
+          <!-- <mat-step completed="true" state="done">
+                  <ng-template matStepLabel>Open</ng-template>
+          </mat-step> -->
+      
+          <!-- Step 2 -->
+          <!-- <mat-step completed="true">
+            <ng-template matStepLabel>Assigned</ng-template>
+          </mat-step> -->
+           
+
+           <!-- Step 3 -->
+          <!-- <mat-step completed="true">
+                  <ng-template matStepLabel>In Progress</ng-template>
+          </mat-step> -->
+      
+          <!-- Step 4 -->
+          <!-- <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+          </mat-step> -->
+
+          <!-- Step 5 -->
+          <!-- <mat-step>
+            <ng-template matStepLabel>Closed</ng-template>
+        </mat-step>
+      </mat-stepper> -->
+      
+      <mat-vertical-stepper #stepper linear>
+
+        <!-- Custom template to replace edit icons with numbers -->
+        <ng-template matStepperIcon="empty">
+          <span class="step-number"></span>
+        </ng-template>
+
+        <!-- Custom template to replace done icons with numbers -->
+        <ng-template matStepperIcon="edit" let-index="index">
+          <span class="step-number"></span>
+        </ng-template>
+
+        <!-- Step 1 -->
+        <mat-step state="edit">
+          <ng-template matStepLabel>
+            <b>08 Dec 01:03pm</b>
+          </ng-template>
+          
+          <p class="status">Closed</p>
+          <p>Yay! Your ticket has been closed. We hope you’re satisfied with the service! <a (click)="addFeedback()">Tap here to share a review.</a> Thank you for choosing us! </p>
+        </mat-step>
+
+        <!-- Step 2 -->
+        <mat-step state="edit">
+              <ng-template matStepLabel>
+                <b>08 Dec 12:53pm</b>
+              </ng-template>
+              
+              <p class="status">Done</p>
+              <p>Your ticket has been completed! [Employee Name] has finished working on your request. If you have any further questions, feel free to reach out. We’re here to help! </p>
+        </mat-step>
+
+          <!-- Step 3 -->
+          <mat-step state="empty">
+              <ng-template matStepLabel>
+                <b>08 Dec 12:30pm</b>
+              </ng-template>
+              
+              <p class="status">In Progress</p>
+              <p>Your ticket is now in progress! [Employee Name] is actively working on your request. We’ll keep you updated as we move forward. Thank you for your patience! </p>
+          </mat-step>
+
+          <!-- Step 4 -->
+          <mat-step state="empty">
+              <ng-template matStepLabel>
+                <b>08 Dec 12:10pm</b>
+              </ng-template>
+                
+                <p class="status">Employee Assigned Successfully</p>
+                <p>Great news! Your ticket has been assigned to [Employee Name]. They’ll be working closely with you to resolve your request. Stay tuned for updates! </p>
+          </mat-step>
+
+          <!-- Step 5 -->
+          <mat-step state="empty">
+            <ng-template matStepLabel>
+              <b>08 Dec 11:53am</b>
+            </ng-template>
+              
+              <p class="status">Opened</p>
+              <p>Your ticket has been successfully opened. We’re excited to assist you! Our team will review your request shortly. Thank you for reaching out! </p>
+          </mat-step>
+      </mat-vertical-stepper>
+    
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <mat-list>
+      <div mat-subheader>Comments</div>
+      <mat-progress-bar mode="determinate"></mat-progress-bar>
+
+        <mat-list-item>
+          <mat-icon matListItemIcon><img mat-list-avatar class="profile" src="assets/images/profile_pictures/user.jpg" alt="John Smith"></mat-icon>
+          <div matListItemTitle><strong>John Smith</strong> • 17th Feb 2024</div>
+          <div matListItemLine>Hi 💡 I’ll do that task now, you can start working on another task!Hi 💡 I’ll do that task now, you can start working on another task!Hi 💡 I’ll do that task now, you can start working on another task! Hi 💡 I’ll do that task now, you can start working on another task!</div>
+        </mat-list-item>
+      
+      <!-- <mat-divider></mat-divider> -->
+        <mat-list-item>
+          <mat-icon matListItemIcon><img mat-list-avatar class="profile" src="assets/images/profile_pictures/user.jpg" alt="John Smith"></mat-icon>
+          <div matListItemTitle><strong>John Smith</strong> • 17th Feb 2024</div>
+          <div matListItemLine> Hi 💡 I’ll do that task now, you can start working on another task!</div>
+        </mat-list-item>
+    </mat-list>
+    
+    <mat-card-actions>
+      <!-- Comment Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Add a comment..." />
+        <mat-icon matSuffix (click)="send()">send</mat-icon>
+      </mat-form-field>
+      <!-- Post Button -->
+      <!-- <button mat-raised-button color="primary">Post</button> -->
+    </mat-card-actions>
+  </mat-card>
+</div>

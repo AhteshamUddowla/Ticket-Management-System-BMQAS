@@ -1,0 +1,233 @@
+@use '@angular/material' as mat;
+  
+/* ===== Dashboard Container ===== */
+  
+.dashboard-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); 
+  row-gap: 20px; 
+  column-gap: 40px;
+  width: 100%;
+}
+  
+.example-card {
+  // min-width: 270px;
+  height: 80px;
+  flex: 0 0 auto;
+}
+  
+mat-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+.title {
+  font-weight: 600;
+  font-size: 20px;
+}
+  
+.value {
+  min-width: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #0054a6;
+}
+  
+/* ===== Filter Container ===== */
+
+mat-icon {
+  margin: 0 5px;
+}
+
+.filter-container {
+  margin-top: 20px;
+}
+  
+.filter-form {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+  align-items: center;
+}
+  
+.mat-mdc-form-field {
+  flex: 1 1 auto; 
+  min-width: 120px; 
+  max-width: 310px; 
+}
+
+mat-form-field,
+mat-select{
+  font-size: 12px;
+}
+
+.filter-field mat-icon{
+  margin: 0px;
+  padding: 0px;
+  padding-left: 5px;
+}
+
+.material-icons{
+  padding: 0px !important;
+}
+
+.search-icon{
+  padding-left: 5px !important;
+}
+  
+.refresh-button {
+  // margin-left: auto; 
+  white-space: nowrap; 
+  padding: 8px 16px;
+  color: #0054a6;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.mat-icon.rotate {
+  transform: rotate(200deg);
+}
+  
+/* ===== Table Container ===== */
+  
+.table-container {
+  padding-top: 0px;
+  overflow-x: auto; 
+}
+  
+table {
+  width: 100%; 
+  min-width: 800px; 
+}
+
+th{
+  color: #0054a6;
+  font-weight: bold;
+}
+  
+th,
+td {
+  text-align: left;
+  font-size: 12px;
+  white-space: nowrap; 
+}
+  
+td {
+  border: none;
+}
+
+td mat-icon:hover{
+  cursor: pointer;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background-color: #f3f4f6;
+}
+  
+.mat-mdc-row:hover {
+  background-color: #dadde2;
+}
+
+.admin {
+  padding: 2px 10px;
+  border-radius: 15px;
+  background-color: #28a745; 
+  color: white;
+}
+
+.guest {
+  padding: 2px 10px;
+  border-radius: 15px;
+  background-color: #007bff; 
+  color: white;
+}
+
+.employee {
+  padding: 2px 10px;
+  border-radius: 15px;
+  background-color: #fd7e14; 
+  color: white;
+}
+
+.Available{
+  padding: 2px 10px;
+  border-radius: 15px;
+  background-color: #28a745 ; 
+  color: white;
+}
+
+.Work{
+  padding: 2px 10px;
+  border-radius: 15px;
+  background-color: #FF5733; 
+  color: white;
+}
+
+/* ===== Icon Styles ===== */
+  
+.edit-icon {
+  color: #2196f3;
+}
+
+.delete-icon {
+  color: #f44336;
+}
+  
+/* ===== Media Queries for Responsiveness ===== */
+  
+@media (max-width: 768px) {
+  .dashboard-container {
+    gap: 20px; 
+  }
+
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+  }
+  
+  .mat-mdc-form-field:first-child {
+    flex: 1 1 57%; 
+    max-width: 57%; 
+  }
+
+  .mat-mdc-form-field:last-of-type{
+    flex: 1 1 40%; 
+    max-width: 40%;
+  }
+}
+  
+@media (max-width: 555px) {
+  .dashboard-container {
+    gap: 10px; 
+  }
+
+  .filter-form {
+    gap: 10px;
+  }
+
+  .mat-mdc-form-field:first-child {
+    flex: 1 1 100%; 
+    max-width: 100%; 
+  }
+
+  .mat-mdc-form-field:last-of-type{
+    flex: 1 1 60%; 
+    max-width: 60%; 
+  }
+
+  .title {
+    font-size: 18px; 
+  }
+
+  .value {
+    font-size: 24px; 
+  }
+}

@@ -1,0 +1,248 @@
+@use '@angular/material' as mat;
+
+mat-icon {
+  margin: 0 5px;
+}
+  
+/* ===== Dashboard Container ===== */
+  
+.dashboard-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); 
+  row-gap: 20px; 
+  column-gap: 40px;
+  width: 100%;
+}
+  
+.example-card {
+  // min-width: 270px;
+  height: 80px;
+  flex: 0 0 auto;
+}
+  
+mat-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+.title {
+  font-weight: 600;
+  font-size: 20px;
+}
+  
+.value {
+  min-width: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #0054a6;
+}
+  
+/* ===== Filter Container ===== */
+  
+.filter-container {
+  margin-top: 20px;
+}
+  
+.filter-form {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+  align-items: center;
+}
+  
+.mat-mdc-form-field {
+  flex: 1 1 auto; 
+  min-width: 120px; 
+  max-width: 320px; 
+}
+  
+.mat-mdc-form-field:first-child {
+  flex: 1 1 120px; 
+}
+  
+.mat-mdc-form-field:nth-child(2) {
+  flex: 1 1 165px; 
+}
+  
+.mat-mdc-form-field:nth-child(3) {
+  flex: 1 1 135px; 
+}
+
+.mat-mdc-form-field:nth-child(4) {
+  flex: 1 1 120px; 
+}
+  
+.mat-mdc-form-field:nth-child(5) {
+  flex: 1 1 110px; 
+}
+
+.mat-mdc-form-field:last-of-type {
+  flex: 1 1 320px; 
+}
+
+mat-form-field,
+mat-select{
+  font-size: 12px;
+}
+
+.filter-field mat-icon{
+  margin: 0px;
+  padding: 0px;
+  padding-left: 5px;
+}
+
+.material-icons{
+  padding: 0px !important;
+}
+
+.search-icon{
+  padding-left: 5px !important;
+}
+  
+.refresh-button {
+  // margin-left: auto; 
+  white-space: nowrap; 
+  padding: 8px 16px;
+  color: #0054a6;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.mat-icon.rotate {
+  transform: rotate(200deg);
+}
+  
+/* ===== Table Container ===== */
+  
+.table-container {
+  padding-top: 0px;
+  overflow-x: auto; 
+}
+  
+table {
+  width: 100%; 
+  min-width: 800px; 
+}
+
+th{
+  color: #0054a6;
+  font-weight: bold;
+}
+  
+th,
+td {
+  text-align: left;
+  font-size: 12px;
+  white-space: nowrap; 
+}
+  
+td {
+  border: none;
+}
+
+td mat-icon:hover{
+  cursor: pointer;
+}
+
+tr:hover{
+  cursor: pointer;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background-color: #f3f4f6;
+}
+  
+.mat-mdc-row:hover {
+  background-color: #dadde2;
+}
+
+.mat-mdc-raised-button{
+  pointer-events: all;
+}
+  
+/* ===== Media Queries for Responsiveness ===== */
+  
+@media (max-width: 768px) {
+  .dashboard-container {
+    gap: 20px; 
+  }
+
+  // .example-card {
+  //   flex: 1 1 100%; 
+  // }
+
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+  }
+  
+  // .mat-mdc-form-field {
+  //   flex: 1 1 100%; 
+  //   max-width: 50%;
+  //   margin-right: 0; 
+  // }
+
+  .mat-mdc-form-field:first-child,
+  .mat-mdc-form-field:nth-child(2),
+  .mat-mdc-form-field:nth-child(3) {
+    flex: 1 1 32%; 
+    max-width: 32%; 
+  }
+
+  .mat-mdc-form-field:nth-child(4),
+  .mat-mdc-form-field:nth-child(5){
+    flex: 1 1 49%; 
+    max-width: 49%; 
+  }
+
+  .mat-mdc-form-field:last-of-type{
+    flex: 1 1 70%; 
+    max-width: 70%; 
+  }
+  
+  // .refresh-button {
+  //   flex: 1 1 25%; 
+  //   margin-left: 0; 
+  //   text-align: center; 
+  // }
+}
+  
+@media (max-width: 555px) {
+  .dashboard-container {
+    gap: 10px; 
+  }
+
+  .filter-form {
+    gap: 10px;
+  }
+
+  .mat-mdc-form-field:first-child,
+  .mat-mdc-form-field:nth-child(2),
+  .mat-mdc-form-field:nth-child(3),
+  .mat-mdc-form-field:nth-child(4),
+  .mat-mdc-form-field:nth-child(5) {
+    flex: 1 1 100%; 
+    max-width: 100%; 
+  }
+
+  .mat-mdc-form-field:last-of-type{
+    flex: 1 1 60%; 
+    max-width: 60%; 
+  }
+
+  .title {
+    font-size: 18px; 
+  }
+
+  .value {
+    font-size: 24px; 
+  }
+}
