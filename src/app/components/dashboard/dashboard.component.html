@@ -1,107 +1,82 @@
 <div>
-    <!-- Dashboard -->
-    <div class="dashboard-container">
-      <ng-container>
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-content>
-            <div class="title">
-              Open Tickets
-            </div>
-            <div class="value">
-              10
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-content>
-            <div class="title">
-              Closed Tickets
-            </div>
-            <div class="value">
-              10
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-content>
-            <div class="title">
-              Unassigned Tickets
-            </div>
-            <div class="value">
-              10
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="example-card" appearance="outlined">
-          <mat-card-content>
-            <div class="title">
-              Due Tickets
-            </div>
-            <div class="value">
-             10
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </ng-container>
-  
-    </div>
-   
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+    <ng-container>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">Open Tickets</div>
+          <div class="value">10</div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">Closed Tickets</div>
+          <div class="value">10</div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">Unassigned Tickets</div>
+          <div class="value">10</div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div class="title">Due Tickets</div>
+          <div class="value">10</div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+
   <div class="line1">
     <div class="chart1">
       <mat-card class="material-card1">
-        <div class="chart-container">
-          <canvas
-            baseChart
-            [type]="'bar'"
-            [data]="barGraphData"
-            [options]="barGraphOptions"
-          ></canvas>
+      <div class="chart-container">
+        <canvas 
+        baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="'bar'">
+      </canvas>
         </div>
       </mat-card>
     </div>
     <div class="chart1">
-      <mat-card class="material-card1">
+      <!-- <mat-card class="material-card1">
+        <mat-card-header>
+          <mat-card-title>Ticket Due Times</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
           <div class="progress-container">
-            
-            <mat-progress-bar
-              mode="determinate"
-              [value]="progressValue"
-            ></mat-progress-bar>
-            <p>{{ progressValue }}% Complete</p>
+            <div class="progress-label">Overdue</div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
           </div>
         </mat-card-content>
-        <mat-card-content>
-          <div class="progress-container">
-            
-            <mat-progress-bar
-              mode="determinate"
-              [value]="progressValue"
-            ></mat-progress-bar>
-            <p>{{ progressValue }}% Complete</p>
-          </div>
-        </mat-card-content>
-      </mat-card>
+      </mat-card> -->
     </div>
   </div>
-  
+
   <!-- line2 -->
   <div class="line2">
-  <div>
-    <mat-card class="material-card2">
-      
-      <mat-card-content class="doughnut-flex">
+    <div>
+      <mat-card class="material-card2" style="height: 20rem;">
+        <mat-card-content class="doughnut-flex">
+          <mat-card-header>
+            <mat-card-title>Tickets Due Times</mat-card-title>
+          </mat-card-header>
           <div class="container">
             <!-- Progress Bar1 -->
             <div class="progress-container">
-            
-              <mat-progress-bar
-                mode="determinate"
-                [value]="progressValue"
-              ></mat-progress-bar>
-              <p>{{ progressValue }}% Complete</p>
+              <div class="progress-container">
+                <div class="progress-label">Overdue</div>
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
             </div>
-          
             <!-- Doughnut Chart (Circular Gauge) -->
             <div class="gauge-container">
               <div class="chart-wrapper">
@@ -118,14 +93,11 @@
           <div class="container">
             <!-- Progress Bar2 -->
             <div class="progress-container">
-            
-              <mat-progress-bar
-                mode="determinate"
-                [value]="progressValue"
-              ></mat-progress-bar>
-              <p>{{ progressValue }}% Complete</p>
+              <div class="progress-label">Today</div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
             </div>
-          
             <!-- Doughnut Chart (Circular Gauge) -->
             <div class="gauge-container">
               <div class="chart-wrapper">
@@ -142,14 +114,12 @@
           <div class="container">
             <!-- Progress Bar3 -->
             <div class="progress-container">
-            
-              <mat-progress-bar
-                mode="determinate"
-                [value]="progressValue"
-              ></mat-progress-bar>
-              <p>{{ progressValue }}% Complete</p>
+              <div class="progress-label">Tomorrow</div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
             </div>
-          
+
             <!-- Doughnut Chart (Circular Gauge) -->
             <div class="gauge-container">
               <div class="chart-wrapper">
@@ -163,31 +133,102 @@
               </div>
             </div>
           </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div>
-    <mat-card class="material-card2">
-      <!-- <mat-card-content> -->
-        <div class="chart-container">
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Sourcewise Tickets</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="chart-container">
           <canvas
             baseChart
-            [type]="'pie'"
-            [data]="pieChartData"
-            [options]="pieChartOptions"
-          ></canvas>
-        </div>
-      <!-- </mat-card-content> -->
-    </mat-card>
+            [data]="chartData"
+            [type]="chartType"
+            [options]="chartOptions"
+            [width]="chartWidth"
+            [height]="chartHeight"
+          >
+          </canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- //chart 5 -->
+    <div>
+      <mat-card class="material-card2" style="height: 20rem;">
+        <mat-card-content class="doughnut-flex">
+          <mat-card-header>
+            <mat-card-title>Open Tickets</mat-card-title>
+          </mat-card-header>
+          <div class="container">
+            <!-- Progress Bar1 -->
+            <div class="progress-container">
+              <div class="progress-container">
+                <div class="progress-label">High</div>
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Doughnut Chart (Circular Gauge) -->
+            <div class="gauge-container">
+              <div class="chart-wrapper">
+                <canvas
+                  baseChart
+                  [type]="'doughnut'"
+                  [data]="doughnutChartData"
+                  [options]="doughnutChartOptions"
+                ></canvas>
+                <div class="gauge-value">{{ progressValue }}%</div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <!-- Progress Bar2 -->
+            <div class="progress-container">
+              <div class="progress-label">Medium</div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+            <!-- Doughnut Chart (Circular Gauge) -->
+            <div class="gauge-container">
+              <div class="chart-wrapper">
+                <canvas
+                  baseChart
+                  [type]="'doughnut'"
+                  [data]="doughnutChartData"
+                  [options]="doughnutChartOptions"
+                ></canvas>
+                <div class="gauge-value">{{ progressValue }}%</div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <!-- Progress Bar3 -->
+            <div class="progress-container">
+              <div class="progress-label">Low</div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- Doughnut Chart (Circular Gauge) -->
+            <div class="gauge-container">
+              <div class="chart-wrapper">
+                <canvas
+                  baseChart
+                  [type]="'doughnut'"
+                  [data]="doughnutChartData"
+                  [options]="doughnutChartOptions"
+                ></canvas>
+                <div class="gauge-value">{{ progressValue }}%</div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div>
-    <mat-card class="material-card2">
-      <mat-card-content>
-        
-      </mat-card-content>
-    </mat-card>
-  </div>
-  </div>
-  
-  
-  <div>
+</div>

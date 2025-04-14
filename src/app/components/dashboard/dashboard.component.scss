@@ -34,21 +34,37 @@ mat-card-content {
 }
 
 .material-card1 {
-  width: 35rem;
-  height: 15rem;
+  width: 70rem;
+  height: 20rem; 
+}
+@media (max-width: 768px) {
+  .material-card1 {
+    max-width: 100%;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
 }
 .material-card2 {
   width: 25rem;
-  height: 20rem;
+  height: 15rem;
 }
 
 .line1, .line2{
   display: flex;
  justify-content: center;
  gap: 20px;
- margin-top: 20px ;
+//  margin-top: 20px ;
+
  
 }
+.line2 {
+  margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
 .chart1{
   width: 35rem;
     padding: 10px;
@@ -56,7 +72,8 @@ mat-card-content {
   }
   .chart2{
     padding: 10px;
-    height: 270px; 
+    height: 270px;
+    
   }
   .chart-container {
     width: 100%; 
@@ -108,7 +125,7 @@ mat-card-content {
     transform: translate(-50%, -50%);
     font-size: 14px; 
     font-weight: bold;
-    color: #4574f7; 
+    color: #093ac2; 
   }
   
 .doughnut-flex {
@@ -118,3 +135,113 @@ mat-card-content {
 ::ng-deep .mat-drawer-content{
   scrollbar-width: none;
 }
+
+.dashboard-card {
+  width: 25rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+.chart-container {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+//last
+.isolated-progress-card {
+  width: 25rem;
+  padding: 1rem;
+}
+.isolated-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+.isolated-progress-container {
+  flex: 1;
+  position: relative;
+}
+.isolated-thick-progress {
+  border-radius: 12px;
+  ::ng-deep .mat-progress-bar-fill::after {
+    border-radius: 12px;
+  }
+}
+.isolated-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.isolated-progress-percent {
+  color: blue;
+  font-weight: 500;
+  font-size: 1rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.isolated-progress-label {
+  color: blue;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+.isolated-mini-doughnut {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+.isolated-doughnut-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+//2 progress bar
+.progress-container {
+  display: flex;
+  align-items: center;
+  width: 200px; /* Adjust width as needed */
+}
+
+.progress-label {
+  background: #E8E8F8; /* Light purple background */
+  color: #333; /* Dark text */
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 6px;
+  background: #f0f0f0; /* Light grey background */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 100%; /* Change this to control progress */
+  height: 100%;
+  background: #D6D6F8; /* Same light purple fill */
+}
+
+
+
+
+
+
+
